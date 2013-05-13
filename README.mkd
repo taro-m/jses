@@ -1,0 +1,6 @@
+# JSES - JavaScript Executing Server
+
+## Install and Start the Server.
+
+    $ npm install -g git@github.com:taro-m/jses.git
+    $ jses
