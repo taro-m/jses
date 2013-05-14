@@ -4,3 +4,5 @@
 
     $ npm install -g git@github.com:taro-m/jses.git
     $ jses
+
+## Try it!
