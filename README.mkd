@@ -6,3 +6,65 @@
     $ jses
 
 ## Try it!
+
+Compile sample.
+
+    $ curl -i -X POST http://127.0.0.1:8080/compile --data-binary "{\"script\": \"log('Hello');\"}"
+
+This print "Hello" on server console.
+
+Run sample.
+
+    $ curl -i -X POST http://127.0.0.1:8080/run --data-binary "{\"script\": \"register('hello', world); function world() { return 'Hello World'; }\", \"entryPoint\": \"hello\"}"
+
+This print below on client:
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    Date: Tue, 14 May 2013 05:58:32 GMT
+    Connection: keep-alive
+    Transfer-Encoding: chunked
+    
+    {"result":"Hello World"}
+
+## Start Development
+
+    $ git clone git@github.com:taro-m/jses.git
+    $ cd jses
+    $ npm install
+    $ node bin/jses
+
+Try node-dev for convenience:
+
+    $ npm install -g node-dev
+    $ node-dev bin/jses
+
+It restart automatically when modify source files.
+
+## Requests
+
+### URL
+
+URL      |Method |Description
+---------|-------|-----------------------------------
+/compile |POST   |Only compile script.
+/run     |POST   |Compile and invoke an entry point.
+
+### Parameters
+
+Name      |Type   |Description
+----------|-------|------------------------------------------
+script    |String |Text of script to execute.
+scriptUrl |String |Callback URL to fetch the script.
+entryName |String |Name of entry point.
+argObj    |Object |An argument which passed for entry point.
+
+*   `script` is overrule `scriptUrl`.
+*   `entryName` and `argObj` are required for `/run`.
+
+## TODO
+
+*   Test `scriptUrl` parameter.
+*   Add API into sandbox.  See `baseContext` in lib/server.js.
+*   Fix interface (error or success) for external server.
+*   Add script caching for execution speed.
