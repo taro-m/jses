@@ -15,7 +15,7 @@ This print "Hello" on server console.
 
 Run sample.
 
-    $ curl -i -X POST http://127.0.0.1:8080/run --data-binary "{\"script\": \"register('hello', world); function world() { return 'Hello World'; }\", \"entryPoint\": \"hello\"}"
+    $ curl -i -X POST http://127.0.0.1:8080/run --data-binary "{\"script\": \"register('hello', world); function world() { return 'Hello World'; }\", \"entryName\": \"hello\"}"
 
 This print below on client:
 
